@@ -1,0 +1,7 @@
+# https://blog.csdn.net/skyebefreeman/article/details/96291283 spring.factories 使用
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.cloud.common.core.config.JacksonConfiguration,\
+  com.cloud.common.core.config.RedisTemplateConfiguration,\
+  com.cloud.common.core.config.RestTemplateConfiguration,\
+  com.cloud.common.core.util.SpringContextHolder,\
+  com.cloud.common.core.config.WebMvcConfiguration
