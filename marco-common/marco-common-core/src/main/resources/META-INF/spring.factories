@@ -1,0 +1,7 @@
+# https://blog.csdn.net/skyebefreeman/article/details/96291283 spring.factories 使用
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.marco.common.core.config.JacksonConfiguration,\
+  com.marco.common.core.config.RedisTemplateConfiguration,\
+  com.marco.common.core.config.RestTemplateConfiguration,\
+  com.marco.common.core.util.SpringContextHolder,\
+  com.marco.common.core.config.WebMvcConfiguration
