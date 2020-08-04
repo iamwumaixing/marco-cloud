@@ -9,20 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud</groupId>
-    <artifactId>cloud-common-datasource</artifactId>
-
+    <artifactId>cloud-common-log</artifactId>
     <packaging>jar</packaging>
 
-    <description>动态切换数据源</description>
+    <description>日志服务</description>
 
     <dependencies>
-        <!--mybatis-->
+        <!--工具类核心包-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>${dynamic-ds.version}</version>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-core</artifactId>
+            <version>1.0</version>
         </dependency>
+        <!--安全依赖获取上下文信息-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

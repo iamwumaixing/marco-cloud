@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>cloud-common</module>
+        <module>cloud-auth</module>
     </modules>
 
     <parent>
@@ -14,7 +15,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.marco</groupId>
+    <groupId>com.cloud</groupId>
     <artifactId>marco-cloud</artifactId>
     <version>1.0</version>
     <name>${project.artifactId}</name>
@@ -33,6 +34,8 @@
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <dynamic-ds.version>3.0.0</dynamic-ds.version>
         <jasypt.version>2.1.0</jasypt.version>
+        <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
+        <fastjson.version>1.2.69</fastjson.version>
     </properties>
 
     <dependencies>
@@ -59,6 +62,17 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt.version}</version>
+        </dependency>
+        <!--监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--监控客户端-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring-boot-admin.version}</version>
         </dependency>
     </dependencies>
 

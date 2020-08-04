@@ -9,19 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud</groupId>
-    <artifactId>cloud-common-datasource</artifactId>
-
+    <artifactId>cloud-common-swagger</artifactId>
     <packaging>jar</packaging>
 
-    <description>动态切换数据源</description>
+    <description>接口文档模块</description>
 
     <dependencies>
-        <!--mybatis-->
+        <!--swagger 依赖-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>${dynamic-ds.version}</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.fox.version}</version>
         </dependency>
     </dependencies>
 
