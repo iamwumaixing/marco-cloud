@@ -31,9 +31,14 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <!--freemarker-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-freemarker</artifactId>-->
+<!--        </dependency>-->
+        <!-- Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <!--spring security 、oauth、jwt依赖-->
         <dependency>

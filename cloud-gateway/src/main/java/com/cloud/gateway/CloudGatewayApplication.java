@@ -1,16 +1,13 @@
-package com.cloud.auth;
+package com.cloud.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * @author marco
- */
 @SpringBootApplication
-public class CloudAuthApplication {
+public class CloudGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudAuthApplication.class, args);
+        SpringApplication.run(CloudGatewayApplication.class, args);
     }
 
 }
