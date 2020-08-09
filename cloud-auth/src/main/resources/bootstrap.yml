@@ -1,0 +1,21 @@
+server:
+  port: 9901
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:152.136.98.68}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs:
+          -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  redis:
+    database: 0
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:152.136.98.68}
+    password: '1997'
+  profiles:
+    active: @profiles.active@

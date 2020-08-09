@@ -2,11 +2,12 @@ package com.cloud.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 
 /**
  * @author marco
  */
-@SpringBootApplication
+@SpringCloudApplication
 public class CloudAuthApplication {
 
     public static void main(String[] args) {
