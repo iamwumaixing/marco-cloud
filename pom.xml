@@ -150,6 +150,7 @@
     </profiles>
 
     <build>
+        <!-- 以下配置暂时是为了解决yml中@artifactId@读取pom参数报错的问题 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -169,6 +170,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!-- end -->
     </build>
 
 

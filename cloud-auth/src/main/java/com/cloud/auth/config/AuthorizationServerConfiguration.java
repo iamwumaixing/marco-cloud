@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 /**
@@ -36,9 +38,35 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager) // 最顶层权限管理器
-                .userDetailsService(userDetailsService) // 根据用户名获取用户的详细信息
-                .tokenStore(tokenStore); // token存储位置 - redis
+        // 最顶层权限管理器
+        endpoints.authenticationManager(authenticationManager)
+                // 根据用户名获取用户的详细信息
+                .userDetailsService(userDetailsService)
+                // token存储位置 - redis
+                .tokenStore(tokenStore);
     }
 
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // 配置了两个客户端 -> password模式认证 和 client模式认证
+        clients.inMemory().withClient("client_1")
+                .resourceIds("user")
+                .authorizedGrantTypes("client_credentials","refresh_token")
+                .scopes("select")
+                .authorities("client")
+                .secret("123456")
+                .and().withClient("client_2")
+                .resourceIds("user")
+                .authorizedGrantTypes("password","refresh_token")
+                .scopes("select")
+                .authorities("client")
+                .secret("123456");
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        oauthServer
+                // 允许表单认证
+                .allowFormAuthenticationForClients();
+    }
 }

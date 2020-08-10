@@ -19,3 +19,9 @@ spring:
     password: '1997'
   profiles:
     active: @profiles.active@
+  # mysql数据库配置
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:152.136.98.68}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:marco_cloud}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    password: '1997'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
