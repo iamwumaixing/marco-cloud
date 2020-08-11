@@ -24,9 +24,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -60,7 +57,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("password","refresh_token")
                 .scopes("select")
                 .authorities("client")
-                .secret("123456");
+                .secret("{noop}123456");
     }
 
     @Override

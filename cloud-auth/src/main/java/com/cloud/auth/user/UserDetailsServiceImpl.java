@@ -1,7 +1,7 @@
 package com.cloud.auth.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import com.cloud.auth.util.PasswordEncoderUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
  * @author wmxing97
  * @date 2020/8/9 23:59
  */
+@Slf4j
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     /**
@@ -28,17 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     private List<User> userList;
 
-    /**
-     * 密码加密
-     */
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @PostConstruct
     public void initData() {
-        String password = passwordEncoder.encode("123456");
+
         userList = new ArrayList<>();
-        userList.add(new User("marco", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin")));
+        userList.add(new User("marco", PasswordEncoderUtil.encode("123456"),
+                AuthorityUtils.commaSeparatedStringToAuthorityList("USER")));
     }
 
     @Override
