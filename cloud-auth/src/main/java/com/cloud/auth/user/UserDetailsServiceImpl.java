@@ -31,10 +31,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @PostConstruct
     public void initData() {
-
+        // {bcrypt} -> BCryptPasswordEncoder -> 标明密码的加密方式 -> {bcrypt} = BCryptPasswordEncoder加密
+        // {bcrypt} is just a configuration and not a part of the password
+        String password = "{bcrypt}" + PasswordEncoderUtil.encode("123456");
         userList = new ArrayList<>();
-        userList.add(new User("marco", PasswordEncoderUtil.encode("123456"),
-                AuthorityUtils.commaSeparatedStringToAuthorityList("USER")));
+        userList.add(new User("marco", password, AuthorityUtils.commaSeparatedStringToAuthorityList("USER")));
     }
 
     @Override

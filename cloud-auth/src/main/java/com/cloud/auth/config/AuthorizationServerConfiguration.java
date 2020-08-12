@@ -4,6 +4,7 @@ import com.cloud.auth.user.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -36,7 +37,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 最顶层权限管理器
-        endpoints.authenticationManager(authenticationManager)
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
+                .authenticationManager(authenticationManager)
                 // 根据用户名获取用户的详细信息
                 .userDetailsService(userDetailsService)
                 // token存储位置 - redis
@@ -51,12 +53,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("client_credentials","refresh_token")
                 .scopes("select")
                 .authorities("client")
-                .secret("123456")
+                .secret("{noop}123456")
                 .and().withClient("client_2")
                 .resourceIds("user")
                 .authorizedGrantTypes("password","refresh_token")
                 .scopes("select")
                 .authorities("client")
+                // {noop} -> NoOpPasswordEncoder -> 标明了该处是什么类型加密的 noop = 无需加密
+                // {noop} is just a configuration and not a part of the password
                 .secret("{noop}123456");
     }
 

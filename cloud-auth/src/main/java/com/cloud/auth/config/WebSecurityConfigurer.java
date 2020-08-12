@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,9 +24,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author wmxing97
  * @date 2020/8/10 23:13
  */
-@Primary
 @Configuration
-@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -63,11 +63,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/*").permitAll();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // TODO: 用了passwordEncoder()就报错 --- id is null
-        // new 了不同的 上面创建bean大概是 单例?
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+    // TODO 该处的作用是什么 没有也可以得出结果
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        // TODO: 用了passwordEncoder()就报错 --- id is null
+//        // new 了不同的 上面创建bean大概是 单例?
+//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
 
 }
