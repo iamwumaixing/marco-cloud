@@ -29,6 +29,17 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <!-- hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!-- cloud-common-core -->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-core</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

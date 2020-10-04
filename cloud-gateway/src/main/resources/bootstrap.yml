@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: @artifactId@
+  redis:
+    database: 0
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:localhost}
+    password: ''
   cloud:
     nacos:
       discovery:
@@ -13,6 +18,22 @@ spring:
         # 共享配置支持
         shared-configs:
           -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+    gateway:
+      # 结合nacos注册中心实现服务路由
+      routes:
+        - id: auth-provider
+          uri: lb://cloud-auth
+          predicates:
+            - Path=/usr/**
+          filters:
+            - StripPrefix=1
+            - name: Hystrix
+              args:
+                name: fallbackCmdA
+                fallbackUri: forward:/fallbackResponse
   # 多套环境配置文件
   profiles:
     active: @profiles.active@
+
+# 启动熔断调用 fallback 的超时时间 3s
+hystrix.command.fallbackCmdA.execution.isolation.thread.timeoutInMilliseconds: 3000
