@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.cloud</groupId>
         <artifactId>marco-cloud</artifactId>
@@ -11,7 +12,13 @@
     <artifactId>cloud-gateway</artifactId>
     <packaging>jar</packaging>
 
-    <description>服务API网关</description>
+    <description>
+        服务API网关
+        feature:
+            1. 统一入口
+            2. token权限验证
+            3. 负载均衡、熔断
+    </description>
 
     <dependencies>
         <!-- gateway网关依赖,内置webflux依赖 -->
@@ -40,6 +47,12 @@
             <artifactId>cloud-common-core</artifactId>
             <version>1.0</version>
         </dependency>
+        <!-- global config -->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-config</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -47,6 +60,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

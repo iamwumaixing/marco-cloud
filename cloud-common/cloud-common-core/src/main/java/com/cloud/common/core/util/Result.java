@@ -54,6 +54,14 @@ public class Result<T> implements Serializable {
         return restResult(data, CommonConstants.FAIL, msg);
     }
 
+    public static <T> Result<T> forbidden(T data) {
+        return restResult(data, CommonConstants.FORBIDDEN, null);
+    }
+
+    public static <T> Result<T> unauthorized(T data) {
+        return restResult(data, CommonConstants.UNAUTHORIZED, null);
+    }
+
     private static <T> Result<T> restResult(T data, int code, String msg) {
         Result<T> apiResult = new Result<>();
         apiResult.setCode(code);

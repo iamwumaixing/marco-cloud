@@ -9,19 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-common-datasource</artifactId>
-
+    <artifactId>cloud-common-config</artifactId>
     <packaging>jar</packaging>
 
-    <description>动态切换数据源</description>
+    <description>公共配置模块</description>
 
-    <dependencies>
-        <!--mybatis-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>${dynamic-ds.version}</version>
-        </dependency>
-    </dependencies>
+
 
 </project>

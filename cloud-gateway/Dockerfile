@@ -12,6 +12,6 @@ WORKDIR /marco-gateway
 
 EXPOSE 3000
 
-ADD ./target/marco-gateway-1.0.jar ./
+ADD ./target/cloud-gateway-1.0.jar ./
 
-CMD sleep 60;java $JAVA_OPTS -jar marco-gateway-1.0.jar
+CMD sleep 60;java $JAVA_OPTS -jar cloud-gateway-1.0.jar

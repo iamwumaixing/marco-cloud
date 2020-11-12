@@ -51,6 +51,16 @@ public interface CommonConstants {
     Integer FAIL = 1;
 
     /**
+     * 没有权限
+     */
+    Integer FORBIDDEN = 101;
+
+    /**
+     * 未携带token 或 token过期
+     */
+    Integer UNAUTHORIZED = 102;
+
+    /**
      * 验证码前缀
      */
     String DEFAULT_CODE_KEY = "DEFAULT_CODE_KEY_";

@@ -34,7 +34,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 // 允许匿名用户
                 .and().anonymous()
                 .and().authorizeRequests()
-                //.antMatchers("/") permitAll 可以无需认证？
+                //.antMatchers("/") permitAll 可以无需认证
                 // 配置user路径访问控制，必须认证才可以访问
                 .antMatchers("/user/**").authenticated();
     }

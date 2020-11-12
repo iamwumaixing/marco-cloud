@@ -8,6 +8,7 @@
         <module>cloud-common</module>
         <module>cloud-auth</module>
         <module>cloud-gateway</module>
+        <module>user-service</module>
     </modules>
 
     <parent>
@@ -38,6 +39,7 @@
         <jasypt.version>2.1.0</jasypt.version>
         <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
         <fastjson.version>1.2.69</fastjson.version>
+        <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
     </properties>
 
     <dependencies>
@@ -75,6 +77,17 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
             <version>${spring-boot-admin.version}</version>
+        </dependency>
+        <!-- hibernate validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+        <!-- cloud context -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
         </dependency>
     </dependencies>
 
