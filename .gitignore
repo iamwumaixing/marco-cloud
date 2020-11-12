@@ -47,4 +47,4 @@ Servers
 .springBeans
 bin/
 
-./cloud-common/cloud-common-config/
+/cloud-common/cloud-common-config/
