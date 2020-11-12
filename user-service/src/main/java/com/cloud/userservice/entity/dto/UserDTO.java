@@ -1,10 +1,7 @@
 package com.cloud.userservice.entity.dto;
 
-import com.cloud.common.base.BaseEntity;
-import com.cloud.common.base.entity.BasePo;
 import com.cloud.common.entity.User;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,8 +13,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @ToString
-@EqualsAndHashCode(callSuper = true)
-public class UserDto extends BaseEntity<User> {
+public class UserDTO {
 
     @NotBlank(message = "The user name cannot be empty")
     @Length(min = 5, max = 20, message = "The username length is 5 to 20")
@@ -28,5 +24,19 @@ public class UserDto extends BaseEntity<User> {
     private String password;
 
     private String name;
+
+    /**
+     * dto -> po
+     *
+     * @param userDTO
+     * @return
+     */
+    public static User convertToPo(UserDTO userDTO) {
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+        user.setName(userDTO.getName());
+        return user;
+    }
 
 }

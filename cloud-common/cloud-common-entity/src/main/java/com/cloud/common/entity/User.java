@@ -1,6 +1,5 @@
 package com.cloud.common.entity;
 
-import com.cloud.common.base.entity.BasePo;
 import lombok.*;
 
 /**
@@ -13,8 +12,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class User extends BasePo {
+public class User {
 
     private Integer id;
 

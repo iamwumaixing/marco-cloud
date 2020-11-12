@@ -2,7 +2,7 @@ package com.cloud.userservice.controller;
 
 import com.cloud.common.core.util.Result;
 import com.cloud.common.entity.User;
-import com.cloud.userservice.entity.dto.UserDto;
+import com.cloud.userservice.entity.dto.UserDTO;
 import com.cloud.userservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody @Valid UserDto userDto) {
+    public Result add(@RequestBody @Valid UserDTO userDto) {
         log.info("user add detail: {}", userDto);
-        User user = userDto.toPo(User.class);
+        User user = UserDTO.convertToPo(userDto);
         return Result.ok(userService.add(user));
     }
 
