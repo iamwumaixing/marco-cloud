@@ -5,13 +5,13 @@ spring:
     name: @artifactId@
   redis:
     database: 0
-    port: ${redis.port:6379}
-    host: ${redis.server:localhost}
+    port: ${REDIS_SERVER:6379}
+    host: ${REDIS_PORT:localhost}
     password: ''
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacos.server:localhost}:${nacos.port:8848}
+        server-addr: ${NACOS_SERVER:localhost}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: yml
@@ -33,7 +33,7 @@ spring:
                 fallbackUri: forward:/fallbackResponse
   # 多套环境配置文件
   profiles:
-    active: ${env:test}
+    active: ${ENV:test}
 secure:
   ignore:
     urls:

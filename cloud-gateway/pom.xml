@@ -47,12 +47,6 @@
             <artifactId>cloud-common-core</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- global config -->
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>cloud-common-config</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 
     <build>

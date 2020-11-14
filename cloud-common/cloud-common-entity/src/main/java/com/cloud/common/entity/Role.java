@@ -1,5 +1,6 @@
 package com.cloud.common.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import java.util.Date;
 @Data
 @ToString
 @NoArgsConstructor
+@TableName("t_role")
 public class Role {
 
     private Integer id;

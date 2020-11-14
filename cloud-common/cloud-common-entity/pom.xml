@@ -14,4 +14,12 @@
 
     <description>公共实体</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

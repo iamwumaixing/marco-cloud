@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 /**
  * @author marco
@@ -25,6 +26,8 @@ public class UserDTO {
 
     private String name;
 
+    private Set<String> roleIds;
+
     /**
      * dto -> po
      *
@@ -36,6 +39,7 @@ public class UserDTO {
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setName(userDTO.getName());
+        user.setRoleIds(userDTO.getRoleIds());
         return user;
     }
 

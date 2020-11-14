@@ -5,14 +5,14 @@ spring:
   application:
     name: @artifactId@
   datasource:
-    url: jdbc:mysql://${mysql.server:localhost}:${mysql.port:8080}/${MYSQL_DATABASE:cloud_rbac}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://${MYSQL_SERVER:localhost}:${MYSQL_PORT:8080}/${MYSQL_DATABASE:cloud_rbac}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     password: 'root'
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacos.server:localhost}:${nacos.port:8848}
+        server-addr: ${NACOS_SERVER:localhost}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: yaml
@@ -20,9 +20,9 @@ spring:
           -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
   redis:
     database: 0
-    host: ${redis.server:localhost}
-    port: ${redis.port:6379}
+    host: ${REDIS_SERVER:localhost}
+    port: ${REDIS_PORT:6379}
     password: ''
 
   profiles:
-    active: ${env:test}
+    active: ${ENV:test}

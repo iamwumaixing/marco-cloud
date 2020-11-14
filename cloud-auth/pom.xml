@@ -74,12 +74,6 @@
             <artifactId>cloud-common-core</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- cloud common config -->
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>cloud-common-config</artifactId>
-            <version>1.0</version>
-        </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-entity</artifactId>
