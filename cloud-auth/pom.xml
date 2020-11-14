@@ -54,11 +54,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
         <!--undertow容器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -74,9 +69,16 @@
             <artifactId>cloud-common-core</artifactId>
             <version>1.0</version>
         </dependency>
+        <!-- cloud-common-entity -->
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common-entity</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!-- database -->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common-mybatis</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

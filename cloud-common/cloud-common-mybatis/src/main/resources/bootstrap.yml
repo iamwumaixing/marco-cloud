@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    druid:
+      max-active: 15
+      max-wait: 2500
+      keep-alive: true
+      connection-properties: socketTimeout=3000;connectTimeout=1200
