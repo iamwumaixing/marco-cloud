@@ -1,14 +1,41 @@
-### 基于SpringCloud Alibaba的微服务基础架构
-目前的实现有：
-1. 通用基础配置的搭建，包括数据库模块、日志模块、mybatis配置、swagger文档配置
-2. 权限控制中心auth的基本实现，基于SpringSecurity + OAuth 2.0，具体配置还有待完善
+# Introduce
 
-计划：
-1. 基于SpringCloud Gateway实现网关功能，包括负载均衡、限流降级、自动熔断等
-2. 数据库连接池Druid实现
-3. 监控服务
+基于 SpringCloud 体系的快速脚手架，为应用快速开发提供帮助与参考。
 
-### 运行
-1. 基于JDK1.8
-2. 注册中心为nacos，需要起一个nacos服务（暂未做集群高可用），建议使用nacos官方推荐的方式启动，也可以通过源码自己部署
-3. 查看配置文件(yml)中的数据库和注册中心的配置，修改为本地或云端
+## Quick Start
+
+### 安装环境
+* Git
+* JDK：本项目基于 JDK1.8 向上兼容，请使用 JDK 的版本大于 1.8
+* Maven：版本无限制，国内环境建议更换源
+
+### 获取项目并启动
+1. 克隆本仓库：`git clone https://github.com/iamwumaixing/marco-cloud.git`
+2. 相应的需要先搭建 MySQL、Redis、Nacos Server 等基础服务
+3. 对每个启动服务的 `bootstrap.yaml` 进行配置，其他参数可根据实际自行配置
+4. 启动项目
+
+## 需求列表
+### 已实现
+#### 服务列表
+
+| 模块名           | 依赖                    | 端口号  | 服务   |
+|---------------|------------------------|------|------|
+| cloud-gateway | SpringCloud Gateway    | 9999 | 网关服务 |
+| cloud-auth    | OAuth2、Spring Security | 9901 | 授权服务 |
+| user-service  | springboot web         | 9900 | 用户服务 |
+
+#### 基础模块
+
+| 模块名                     | 依赖                       | 类别     |
+|-------------------------|--------------------------|--------|
+| cloud-common-core       | hutool、redis             | 基础核心代码 |
+| cloud-common-datasource | mybatis-plus             | 多数据源   |
+| cloud-common-entity     | /                        | 公共实体类  |
+| cloud-common-log        | /                        | 日志     |
+| cloud-common-mybatis    | mybatis-plus、mysql、druid | 数据库依赖  |
+| cloud-common-swagger    | swagger                  | api文档  |
+
+### 待实现
+待补充...
+
