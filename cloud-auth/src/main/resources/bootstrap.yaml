@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER:localhost}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
+#        shared-configs:
+#          -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
