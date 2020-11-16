@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.cloud.common.base.BaseEntity;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -19,7 +21,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("t_user")
-public class User {
+@EqualsAndHashCode(callSuper = false)
+public class User extends BaseEntity {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;

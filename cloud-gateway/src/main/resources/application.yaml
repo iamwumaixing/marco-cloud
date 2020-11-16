@@ -5,8 +5,8 @@ spring:
     name: @artifactId@
   redis:
     database: 0
-    port: ${REDIS_SERVER:6379}
-    host: ${REDIS_PORT:localhost}
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_SERVER:localhost}
     password: ''
   cloud:
     nacos:
@@ -33,7 +33,7 @@ spring:
                 fallbackUri: forward:/fallbackResponse
   # 多套环境配置文件
   profiles:
-    active: ${ENV:test}
+    active: @profiles.active@
 secure:
   ignore:
     urls:

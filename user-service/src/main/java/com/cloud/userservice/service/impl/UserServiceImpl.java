@@ -1,8 +1,10 @@
 package com.cloud.userservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cloud.common.entity.User;
 import com.cloud.userservice.dao.UserMapper;
+import com.cloud.userservice.exception.UserNotFoundException;
 import com.cloud.userservice.service.UserRoleService;
 import com.cloud.userservice.service.UserService;
 import io.micrometer.core.instrument.util.StringUtils;
@@ -13,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 /**
  * @author marco
@@ -31,7 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean add(User user) {
         log.info("user: {}", user);
         if (StringUtils.isNotBlank(user.getPassword())) {
@@ -42,6 +46,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return res;
     }
 
+    @Override
+    public User getByUserName(String username) {
+        User user = this.getOne(new QueryWrapper<User>()
+                .eq("username", username));
+        if (Objects.isNull(user)) {
+            throw new UserNotFoundException("user not found with username:" + username);
+        }
+        user.setRoleIds(userRoleService.getByUserId(user.getId()));
+        return user;
+    }
 
 
 }

@@ -2,6 +2,7 @@ package com.cloud.auth.config;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +10,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -24,7 +27,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    @Qualifier("userDetailsService")
+    private UserDetailsService userDetailsService;
 
     /**
      * 解决了AuthenticationManager等bean无法自动注入的问题
@@ -38,30 +42,33 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Override
+    @SneakyThrows
+    protected void configure(HttpSecurity http) {
+        http.csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/actuator/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll();
+    }
+
     /**
-     * @return PasswordEncoder
+     * 注入自定义的userDetailsService实现，获取用户信息，设置密码加密方式
+     *
+     * @param auth
+     * @throws Exception
      */
+    @Override
+    @SneakyThrows
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/*").permitAll();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser("marco")
-                .password(passwordEncoder.encode("123456"))
-                .roles("USER");
+        return new BCryptPasswordEncoder();
     }
 
 

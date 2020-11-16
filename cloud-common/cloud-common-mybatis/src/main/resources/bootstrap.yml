@@ -2,6 +2,8 @@ spring:
   datasource:
     druid:
       max-active: 15
-      max-wait: 2500
+      max-wait: 3000
       keep-alive: true
-      connection-properties: socketTimeout=3000;connectTimeout=1200
+      connection-properties: socketTimeout=30000;connectTimeout=3000
+      time-between-eviction-runs-millis: 20000
+      test-while-idle: true

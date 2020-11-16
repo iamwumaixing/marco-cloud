@@ -15,4 +15,12 @@ public interface UserService {
      * @return
      */
     boolean add(User user);
+
+    /**
+     * 根据username获取User
+     *
+     * @param username
+     * @return
+     */
+    User getByUserName(String username);
 }

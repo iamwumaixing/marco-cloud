@@ -25,6 +25,13 @@ public interface UserRoleService {
      */
     boolean removeByUserId(Integer userId);
 
+    /**
+     * 根据userId查询用户拥有的roleId集合
+     *
+     * @param userId
+     * @return
+     */
+    Set<String> getByUserId(Integer userId);
 
 
 }

@@ -3,15 +3,6 @@ server:
 spring:
   application:
     name: '@artifactId@'
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${NACOS_SERVER:localhost}:${NACOS_PORT:8848}
-      config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        file-extension: yaml
-        shared-configs:
-          -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
   redis:
     database: 0
     host: ${REDIS_SERVER:localhost}

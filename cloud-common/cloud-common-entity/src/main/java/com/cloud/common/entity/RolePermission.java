@@ -2,23 +2,22 @@ package com.cloud.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cloud.common.base.BaseEntity;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import lombok.*;
 
 /**
  * @author marco
- * @date 2020/11/12 6:32 下午
+ * @date 2020/11/15 3:02 下午
  */
 @Data
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
-@TableName("t_user_role")
-@EqualsAndHashCode(callSuper = true)
-public class UserRole extends BaseEntity {
-
-    private Integer userId;
+@AllArgsConstructor
+@TableName("t_role_permission")
+@EqualsAndHashCode(callSuper = false)
+public class RolePermission extends BaseEntity {
 
     private String roleId;
+
+    private String permissionId;
 
 }

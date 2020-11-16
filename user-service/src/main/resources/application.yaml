@@ -9,20 +9,12 @@ spring:
     password: 'root'
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${NACOS_SERVER:localhost}:${NACOS_PORT:8848}
-      config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        file-extension: yaml
-        shared-configs:
-          -application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
   redis:
     database: 0
     host: ${REDIS_SERVER:localhost}
     port: ${REDIS_PORT:6379}
     password: ''
-
   profiles:
-    active: ${ENV:test}
+    active: @profiles.active@
+
+SERVER: 8.129.109.232

@@ -6,10 +6,7 @@ import com.cloud.userservice.entity.dto.UserDTO;
 import com.cloud.userservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -30,6 +27,13 @@ public class UserController {
         log.info("user add detail: {}", userDto);
         User user = UserDTO.convertToPo(userDto);
         return Result.ok(userService.add(user));
+    }
+
+    @GetMapping("/get/{username}")
+    public Result getByUserName(@PathVariable String username) {
+        log.info("query with username: {}", username);
+        User user = userService.getByUserName(username);
+        return Result.ok(user);
     }
 
 
