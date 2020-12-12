@@ -6,11 +6,13 @@ import com.cloud.common.entity.Role;
 import com.cloud.userservice.dao.RoleMapper;
 import com.cloud.userservice.service.RolePermissionService;
 import com.cloud.userservice.service.RoleService;
+import com.cloud.userservice.service.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +22,9 @@ import java.util.Set;
 @Slf4j
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
+
+    @Autowired
+    UserRoleService userRoleService;
 
     @Autowired
     RolePermissionService rolePermissionService;
@@ -32,6 +37,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         // associated permission
         rolePermissionService.addRolePermission(role.getId(), role.getPermissionId());
         return res;
+    }
+
+    @Override
+    public List<Role> getRoleByUserId(Integer userId) {
+        Set<String> roleIds = userRoleService.getByUserId(userId);
+        return this.listByIds(roleIds);
     }
 
 }

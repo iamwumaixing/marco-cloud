@@ -2,6 +2,7 @@ package com.cloud.userservice.service;
 
 import com.cloud.common.entity.Role;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,5 +18,13 @@ public interface RoleService {
      * @return
      */
     boolean add(Role role);
+
+    /**
+     * 根据用户id查询用户角色
+     *
+     * @param userId
+     * @return
+     */
+    List<Role> getRoleByUserId(Integer userId);
 
 }

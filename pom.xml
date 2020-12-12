@@ -9,6 +9,7 @@
         <module>cloud-auth</module>
         <module>cloud-gateway</module>
         <module>user-service</module>
+        <module>cloud-authentication</module>
     </modules>
 
     <parent>
@@ -156,6 +157,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <!-- jetcache缓存 -->
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>2.5.14</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

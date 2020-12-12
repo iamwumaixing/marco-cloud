@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,13 @@ public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionMapper,
         QueryWrapper<RolePermission> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(RolePermission::getRoleId, roleId);
         return remove(queryWrapper);
+    }
+
+    @Override
+    public List<RolePermission> getByRoleIds(Set<String> roleIds) {
+        QueryWrapper<RolePermission> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("role_id", roleIds);
+        return this.list(queryWrapper);
     }
 
 }

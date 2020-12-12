@@ -69,7 +69,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .secret(passwordEncoder.encode("12345"))
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("select");
-        // 配置客户端信息，从数据库中读取，对应oauth_client_details表
+        // TODO 配置客户端信息，从数据库中读取，对应oauth_client_details表
         // clients.jdbc(dataSource);
     }
 

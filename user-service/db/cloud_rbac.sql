@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : 阿里云DB
- Source Server Type    : MySQL
- Source Server Version : 50726
- Source Host           : 8.129.109.232:7001
- Source Schema         : cloud_rbac
-
- Target Server Type    : MySQL
- Target Server Version : 50726
- File Encoding         : 65001
-
- Date: 16/11/2020 17:42:40
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

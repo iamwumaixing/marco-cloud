@@ -1,5 +1,8 @@
 package com.cloud.userservice.service;
 
+import com.cloud.common.entity.RolePermission;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,6 +27,13 @@ public interface RolePermissionService {
      * @return
      */
     boolean removeByRoleId(String roleId);
+
+    /**
+     *
+     * @param roleIds
+     * @return
+     */
+    List<RolePermission> getByRoleIds(Set<String> roleIds);
 
 
 }
